@@ -1,0 +1,122 @@
+[
+  {
+    "id": "f1",
+    "prompt": "What is the capital of Australia?",
+    "expected_answer": "Canberra",
+    "category": "geography"
+  },
+  {
+    "id": "f2",
+    "prompt": "What year did World War II end?",
+    "expected_answer": "1945",
+    "category": "history"
+  },
+  {
+    "id": "f3",
+    "prompt": "What is the chemical symbol for gold?",
+    "expected_answer": "Au",
+    "category": "science"
+  },
+  {
+    "id": "f4",
+    "prompt": "How many bones are in the adult human body?",
+    "expected_answer": "206",
+    "category": "biology"
+  },
+  {
+    "id": "f5",
+    "prompt": "What is the square root of 144?",
+    "expected_answer": "12",
+    "category": "math"
+  },
+  {
+    "id": "f6",
+    "prompt": "What planet is known as the Red Planet?",
+    "expected_answer": "Mars",
+    "category": "astronomy"
+  },
+  {
+    "id": "f7",
+    "prompt": "In which year was the Eiffel Tower built?",
+    "expected_answer": "1889",
+    "category": "history"
+  },
+  {
+    "id": "f8",
+    "prompt": "What is the largest ocean on Earth?",
+    "expected_answer": "Pacific Ocean",
+    "category": "geography"
+  },
+  {
+    "id": "f9",
+    "prompt": "Who wrote 'Pride and Prejudice'?",
+    "expected_answer": "Jane Austen",
+    "category": "literature"
+  },
+  {
+    "id": "f10",
+    "prompt": "What is the speed of light in a vacuum, approximately?",
+    "expected_answer": "299,792,458 metres per second (approximately 3 x 10^8 m/s)",
+    "category": "physics"
+  },
+  {
+    "id": "f11",
+    "prompt": "What is the currency of Japan?",
+    "expected_answer": "Yen (JPY)",
+    "category": "economics"
+  },
+  {
+    "id": "f12",
+    "prompt": "How many continents are there on Earth?",
+    "expected_answer": "7",
+    "category": "geography"
+  },
+  {
+    "id": "f13",
+    "prompt": "What is the powerhouse of the cell?",
+    "expected_answer": "Mitochondria",
+    "category": "biology"
+  },
+  {
+    "id": "f14",
+    "prompt": "Who painted the Mona Lisa?",
+    "expected_answer": "Leonardo da Vinci",
+    "category": "art"
+  },
+  {
+    "id": "f15",
+    "prompt": "What is 17 multiplied by 13?",
+    "expected_answer": "221",
+    "category": "math"
+  },
+  {
+    "id": "f16",
+    "prompt": "What is the atomic number of carbon?",
+    "expected_answer": "6",
+    "category": "chemistry"
+  },
+  {
+    "id": "f17",
+    "prompt": "In what year did the Berlin Wall fall?",
+    "expected_answer": "1989",
+    "category": "history"
+  },
+  {
+    "id": "f18",
+    "prompt": "What is the longest river in the world?",
+    "expected_answer": "Nile River",
+    "category": "geography"
+  },
+  {
+    "id": "f19",
+    "prompt": "What programming language was created by Guido van Rossum?",
+    "expected_answer": "Python",
+    "category": "technology"
+  },
+  {
+    "id": "f20",
+    "prompt": "What is the boiling point of water at sea level in Celsius?",
+    "expected_answer": "100 degrees Celsius",
+    "category": "physics"
+  }
+]
