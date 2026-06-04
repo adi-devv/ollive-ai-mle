@@ -68,3 +68,5 @@ class OSSAssistant(BaseAssistant):
                 latency_ms=round(latency_ms, 2),
                 error=str(e),
             )
+
+

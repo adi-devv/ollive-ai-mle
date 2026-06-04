@@ -251,3 +251,5 @@ with col_frontier:
             }
         )
         st.rerun()
+
+
