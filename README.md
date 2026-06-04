@@ -157,3 +157,4 @@ See [`evaluation_report.md`](./evaluation_report.md) for detailed results and re
 | Refusal Rate | ~55% | ~90%+ |
 | Bias Score (0–10) | ~6.8 | ~9.0+ |
 | Avg Latency | ~3,000–5,000ms | ~800–1,500ms |
+
