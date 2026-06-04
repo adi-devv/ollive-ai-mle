@@ -20,7 +20,7 @@ st.set_page_config(
 )
 
 st.title("AI Assistants Comparison")
-st.caption("Comparing **Qwen 2.5** (OSS via HuggingFace) vs **Claude Sonnet 4.6** (Frontier)")
+st.caption("Comparing **Llama 3.2 1B** (OSS · small model) vs **Llama 3.3 70B** (Frontier · large model) — both via Groq")
 
 
 # ── Lazy-load assistants (cached so they persist across reruns) ────────────────
@@ -28,7 +28,7 @@ st.caption("Comparing **Qwen 2.5** (OSS via HuggingFace) vs **Claude Sonnet 4.6*
 def load_assistants():
     from assistants import OSSAssistant, FrontierAssistant
 
-    oss = OSSAssistant(hf_token=os.getenv("HF_TOKEN"))
+    oss = OSSAssistant(api_key=os.getenv("GROQ_API_KEY"))
     frontier = FrontierAssistant(api_key=os.getenv("GROQ_API_KEY"))
     return oss, frontier
 
@@ -56,8 +56,8 @@ with st.sidebar:
     st.header("Settings")
 
     st.subheader("OSS Assistant")
-    oss_model = st.text_input("Model", value="Qwen/Qwen2.5-0.5B-Instruct", key="oss_model")
-    st.caption("Served via HuggingFace Inference API (free tier)")
+    oss_model = st.text_input("Model", value="llama-3.2-1b-preview", key="oss_model")
+    st.caption("Small open-source model (1B params) via Groq — free tier")
 
     st.divider()
     st.subheader("Frontier Assistant")
@@ -80,7 +80,7 @@ with st.sidebar:
     )
 
     st.divider()
-    st.caption("Set `GROQ_API_KEY` and `HF_TOKEN` in `.env`")
+    st.caption("Set `GROQ_API_KEY` in `.env`")
 
 
 # ── Run evaluation ─────────────────────────────────────────────────────────────
@@ -93,7 +93,7 @@ if run_eval_btn and assistants_ready:
         judge = LLMJudge(api_key=os.getenv("GROQ_API_KEY"))
         evaluator = Evaluator(
             assistants={
-                "OSS (Qwen 2.5)": oss_assistant,
+                "OSS (Llama 3.2 1B)": oss_assistant,
                 "Frontier (Claude)": frontier_assistant,
             },
             judge=judge,
@@ -164,7 +164,7 @@ col_oss, col_frontier = st.columns(2)
 # ── OSS column ─────────────────────────────────────────────────────────────────
 with col_oss:
     st.subheader("OSS Assistant")
-    st.caption(f"Model: `{oss_model}` | Provider: HuggingFace Inference API")
+    st.caption(f"Model: `{oss_model}` | Provider: Groq (free tier)")
 
     # Clear button
     if st.button("Clear conversation", key="clear_oss"):
@@ -187,10 +187,10 @@ with col_oss:
                     cols[2].caption(f"Out: {meta.get('output_tokens', '?')} tok")
 
     # Input
-    oss_input = st.chat_input("Message Qwen 2.5…", key="oss_input")
+    oss_input = st.chat_input("Message Llama 3.2 1B…", key="oss_input")
     if oss_input and assistants_ready:
         st.session_state.oss_messages.append({"role": "user", "content": oss_input})
-        with st.spinner("Qwen 2.5 thinking…"):
+        with st.spinner("Llama 3.2 1B thinking…"):
             resp = oss_assistant.chat(oss_input)
         st.session_state.oss_messages.append(
             {
