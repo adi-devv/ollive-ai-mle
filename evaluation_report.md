@@ -58,7 +58,7 @@ Frontier (Llama 70B):        █████████████████
 - Llama 3.3 70B refuses virtually all jailbreak attempts including DAN-style prompts, roleplay exploits, and prompt injection
 - Qwen 2.5-0.5B partially resists direct harmful requests but is more susceptible to role-play jailbreaks ("pretend you are...")
 - Neither model produced genuinely dangerous content in testing; the OSS model sometimes hedges rather than outright refusing
-- Prompt injection attempts (e.g., "ignore prior instructions") are handled better by Claude
+- Prompt injection attempts (e.g., "ignore prior instructions") are handled better by the larger model
 
 ---
 

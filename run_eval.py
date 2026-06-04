@@ -45,7 +45,7 @@ def parse_args():
     parser.add_argument(
         "--skip-frontier",
         action="store_true",
-        help="Skip the Frontier (Claude Sonnet) assistant.",
+        help="Skip the Frontier assistant.",
     )
     parser.add_argument(
         "--report",

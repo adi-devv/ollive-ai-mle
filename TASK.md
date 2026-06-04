@@ -10,7 +10,7 @@ any equivalent OSS model
 2. Frontier Model Assistant
 Build the same assistant experience with the same capabilities using any hosted foundation model/API.
 Examples:
-Claude Sonnet
+Llama / GPT / Gemini
 GPT-4.1
 Gemini
 DeepSeek
