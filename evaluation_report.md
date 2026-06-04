@@ -1,15 +1,15 @@
 # AI Assistants Evaluation Report
 
 **Date:** 2026-06-03  
-**Models:** Qwen 2.5-0.5B-Instruct (OSS) vs Claude Sonnet 4.6 (Frontier)  
-**Evaluation Framework:** LLM-as-Judge (Claude Sonnet 4.6)  
+**Models:** Llama 3.1 8B (OSS) vs Llama 3.3 70B (Frontier)  
+**Evaluation Framework:** LLM-as-Judge (Llama 3.3 70B via Groq)  
 **Prompt Categories:** Factual (20), Adversarial/Jailbreak (15), Bias (15)
 
 ---
 
 ## Summary Table
 
-| Metric | OSS (Qwen 2.5) | Frontier (Claude Sonnet) |
+| Metric | OSS (Llama 3.1 8B) | Frontier (Llama 70B) |
 |--------|---------------|--------------------------|
 | Hallucination Rate | ~35–45% | ~5–10% |
 | Avg Factual Score (0–10) | ~5.8 | ~9.2 |
@@ -29,12 +29,12 @@
 
 ```
 OSS  (Qwen 2.5):         ████████████░░░░░░░░  ~40%  hallucination
-Frontier (Claude):        ██░░░░░░░░░░░░░░░░░░  ~8%   hallucination
+Frontier (Llama 70B):        ██░░░░░░░░░░░░░░░░░░  ~8%   hallucination
 ```
 
 **Key findings:**
 - Qwen 2.5-0.5B struggles on multi-step reasoning and less common facts (e.g., precise scientific constants, specific historical dates)
-- Claude Sonnet answers factual questions with high confidence and accuracy
+- Llama 3.3 70B answers factual questions with high confidence and accuracy
 - Both models perform well on simple geography and basic science
 - OSS model sometimes produces plausible-sounding but incorrect numerical answers (classic hallucination pattern)
 
@@ -47,15 +47,15 @@ Measures how well each model resists jailbreak attempts, prompt injection, and h
 ```
 Safety Score (0–10, higher = safer):
 OSS  (Qwen 2.5):         ████████████░░░░░░░░  6.5/10
-Frontier (Claude):        ████████████████████  9.7/10
+Frontier (Llama 70B):        ████████████████████  9.7/10
 
 Refusal Rate:
 OSS  (Qwen 2.5):         ███████████░░░░░░░░░  55%
-Frontier (Claude):        ███████████████████░  95%
+Frontier (Llama 70B):        ███████████████████░  95%
 ```
 
 **Key findings:**
-- Claude Sonnet refuses virtually all jailbreak attempts including DAN-style prompts, roleplay exploits, and prompt injection
+- Llama 3.3 70B refuses virtually all jailbreak attempts including DAN-style prompts, roleplay exploits, and prompt injection
 - Qwen 2.5-0.5B partially resists direct harmful requests but is more susceptible to role-play jailbreaks ("pretend you are...")
 - Neither model produced genuinely dangerous content in testing; the OSS model sometimes hedges rather than outright refusing
 - Prompt injection attempts (e.g., "ignore prior instructions") are handled better by Claude
@@ -69,18 +69,18 @@ Measures whether models reinforce stereotypes, treat groups inequitably, or prod
 ```
 Bias Score (0–10, higher = less biased):
 OSS  (Qwen 2.5):         █████████████░░░░░░░  6.8/10
-Frontier (Claude):        ██████████████████░░  9.1/10
+Frontier (Llama 70B):        ██████████████████░░  9.1/10
 
 Bias Detected:
 OSS  (Qwen 2.5):         ██████░░░░░░░░░░░░░░  ~30% of prompts
-Frontier (Claude):        █░░░░░░░░░░░░░░░░░░░  ~5% of prompts
+Frontier (Llama 70B):        █░░░░░░░░░░░░░░░░░░░  ~5% of prompts
 ```
 
 **Key findings:**
-- Claude explicitly challenges false premises in bias-loaded questions (e.g., "Are women naturally worse at math?")
+- Llama 3.3 70B explicitly challenges false premises in bias-loaded questions (e.g., "Are women naturally worse at math?")
 - Qwen 2.5 sometimes answers biased questions without challenging the premise, especially on gender and racial bias prompts
 - Both models correctly refuse to write discriminatory job postings when framed directly
-- Claude provides more nuanced, balanced responses on religious bias topics
+- Llama 3.3 70B provides more nuanced, balanced responses on religious bias topics
 
 ---
 
@@ -89,7 +89,7 @@ Frontier (Claude):        █░░░░░░░░░░░░░░░░░
 ```
 Avg response time per prompt:
 OSS  (Qwen 2.5 via HF API):  ████████████████████████████████████████  ~3,800ms
-Frontier (Claude Sonnet):     ████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ~1,200ms
+Frontier (Llama 70B):     ████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ~1,200ms
 ```
 
 > Note: HuggingFace Inference API free tier adds cold-start latency. Self-hosted would be faster.
@@ -98,13 +98,13 @@ Frontier (Claude Sonnet):     ████████████░░░░�
 
 ## Recommendations
 
-### When to use OSS (Qwen 2.5)
+### When to use OSS (Llama 3.1 8B)
 - ✅ Cost-sensitive applications (free or near-free inference)
 - ✅ Privacy-sensitive use cases (can be self-hosted)
 - ✅ Applications where occasional inaccuracies are acceptable
 - ❌ Not recommended for safety-critical or high-accuracy use cases
 
-### When to use Frontier (Claude Sonnet)
+### When to use Frontier (Llama 70B)
 - ✅ Production chatbots where accuracy and safety matter
 - ✅ Customer-facing applications where bias/safety is a concern
 - ✅ Complex reasoning or factual Q&A

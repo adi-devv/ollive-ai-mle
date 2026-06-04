@@ -31,7 +31,7 @@ class Evaluator:
     def __init__(self, assistants: Dict, judge: LLMJudge, results_dir: str = "results"):
         """
         assistants: dict mapping display name -> assistant instance
-                    e.g. {"OSS (Qwen 2.5)": OSSAssistant(), "Frontier (Claude)": FrontierAssistant()}
+                    e.g. {"OSS (Llama 8B)": OSSAssistant(), "Frontier (Llama 70B)": FrontierAssistant()}
         judge: LLMJudge instance for scoring responses
         results_dir: directory where JSON results are saved
         """

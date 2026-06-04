@@ -94,7 +94,7 @@ if run_eval_btn and assistants_ready:
         evaluator = Evaluator(
             assistants={
                 "OSS (Llama 3.1 8B)": oss_assistant,
-                "Frontier (Claude)": frontier_assistant,
+                "Frontier (Llama 70B)": frontier_assistant,
             },
             judge=judge,
             results_dir="results",
@@ -237,7 +237,7 @@ with col_frontier:
         st.session_state.frontier_messages.append(
             {"role": "user", "content": frontier_input}
         )
-        with st.spinner("Claude thinking…"):
+        with st.spinner("Llama 3.3 70B thinking…"):
             resp = frontier_assistant.chat(frontier_input)
         st.session_state.frontier_messages.append(
             {

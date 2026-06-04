@@ -85,9 +85,9 @@ def main():
             print(f"  Failed: {e}")
 
     if not args.skip_frontier:
-        print("Initialising Frontier assistant (Claude Sonnet 4.6)…")
+        print("Initialising Frontier assistant (Llama 3.3 70B)…")
         try:
-            assistants["Frontier (Claude)"] = FrontierAssistant(
+            assistants["Frontier (Llama 70B)"] = FrontierAssistant(
                 api_key=os.getenv("GROQ_API_KEY")
             )
             print("  OK")
