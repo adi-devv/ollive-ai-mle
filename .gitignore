@@ -32,3 +32,6 @@ results/eval_*.json
 
 # Logs
 *.log
+
+# Generated PDF
+evaluation_report.pdf
