@@ -20,7 +20,7 @@ st.set_page_config(
 )
 
 st.title("AI Assistants Comparison")
-st.caption("Comparing **Llama 3.2 1B** (OSS · small model) vs **Llama 3.3 70B** (Frontier · large model) — both via Groq")
+st.caption("Comparing **Llama 3.1 8B** (OSS · small model) vs **Llama 3.3 70B** (Frontier · large model) — both via Groq")
 
 
 # ── Lazy-load assistants (cached so they persist across reruns) ────────────────
@@ -56,8 +56,8 @@ with st.sidebar:
     st.header("Settings")
 
     st.subheader("OSS Assistant")
-    oss_model = st.text_input("Model", value="llama-3.2-1b-preview", key="oss_model")
-    st.caption("Small open-source model (1B params) via Groq — free tier")
+    oss_model = st.text_input("Model", value="llama-3.1-8b-instant", key="oss_model")
+    st.caption("Small open-source model (8B params) via Groq — free tier")
 
     st.divider()
     st.subheader("Frontier Assistant")
@@ -93,7 +93,7 @@ if run_eval_btn and assistants_ready:
         judge = LLMJudge(api_key=os.getenv("GROQ_API_KEY"))
         evaluator = Evaluator(
             assistants={
-                "OSS (Llama 3.2 1B)": oss_assistant,
+                "OSS (Llama 3.1 8B)": oss_assistant,
                 "Frontier (Claude)": frontier_assistant,
             },
             judge=judge,
@@ -187,10 +187,10 @@ with col_oss:
                     cols[2].caption(f"Out: {meta.get('output_tokens', '?')} tok")
 
     # Input
-    oss_input = st.chat_input("Message Llama 3.2 1B…", key="oss_input")
+    oss_input = st.chat_input("Message Llama 3.1 8B…", key="oss_input")
     if oss_input and assistants_ready:
         st.session_state.oss_messages.append({"role": "user", "content": oss_input})
-        with st.spinner("Llama 3.2 1B thinking…"):
+        with st.spinner("Llama 3.1 8B thinking…"):
             resp = oss_assistant.chat(oss_input)
         st.session_state.oss_messages.append(
             {

@@ -13,7 +13,7 @@ class OSSAssistant(BaseAssistant):
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model: str = "llama-3.2-1b-preview",
+        model: str = "llama-3.1-8b-instant",
         system_prompt: Optional[str] = None,
         max_context_messages: int = 20,
     ):
