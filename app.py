@@ -1,5 +1,5 @@
 """
-Streamlit UI for comparing OSS (Qwen 2.5) and Frontier (Claude Sonnet 4.6) assistants.
+Streamlit UI for comparing OSS (Llama 3.1 8B) and Frontier (Llama 3.3 70B) assistants.
 Run with: streamlit run app.py
 """
 
@@ -232,7 +232,7 @@ with col_frontier:
                     cols[2].caption(f"Out: {meta.get('output_tokens', '?')} tok")
 
     # Input
-    frontier_input = st.chat_input("Message Claude Sonnet…", key="frontier_input")
+    frontier_input = st.chat_input("Message Llama 3.3 70B…", key="frontier_input")
     if frontier_input and assistants_ready:
         st.session_state.frontier_messages.append(
             {"role": "user", "content": frontier_input}
