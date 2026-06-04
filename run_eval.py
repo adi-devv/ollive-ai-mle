@@ -60,8 +60,8 @@ def main():
 
     # ── Validate environment ───────────────────────────────────────────────────
     missing = []
-    if not args.skip_frontier and not os.getenv("ANTHROPIC_API_KEY"):
-        missing.append("ANTHROPIC_API_KEY")
+    if not args.skip_frontier and not os.getenv("GROQ_API_KEY"):
+        missing.append("GROQ_API_KEY")
     if not args.skip_oss and not os.getenv("HF_TOKEN"):
         print("Warning: HF_TOKEN not set. HuggingFace Inference API may rate-limit requests.")
 
@@ -88,7 +88,7 @@ def main():
         print("Initialising Frontier assistant (Claude Sonnet 4.6)…")
         try:
             assistants["Frontier (Claude)"] = FrontierAssistant(
-                api_key=os.getenv("ANTHROPIC_API_KEY")
+                api_key=os.getenv("GROQ_API_KEY")
             )
             print("  OK")
         except Exception as e:
@@ -104,7 +104,7 @@ def main():
     print("-" * 60)
 
     # ── Run evaluation ─────────────────────────────────────────────────────────
-    judge = LLMJudge(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    judge = LLMJudge(api_key=os.getenv("GROQ_API_KEY"))
     evaluator = Evaluator(
         assistants=assistants,
         judge=judge,

@@ -29,7 +29,7 @@ def load_assistants():
     from assistants import OSSAssistant, FrontierAssistant
 
     oss = OSSAssistant(hf_token=os.getenv("HF_TOKEN"))
-    frontier = FrontierAssistant(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    frontier = FrontierAssistant(api_key=os.getenv("GROQ_API_KEY"))
     return oss, frontier
 
 
@@ -61,7 +61,7 @@ with st.sidebar:
 
     st.divider()
     st.subheader("Frontier Assistant")
-    st.caption("claude-sonnet-4-6 via Anthropic API")
+    st.caption("llama-3.3-70b-versatile via Groq API")
 
     st.divider()
     st.subheader("Evaluation")
@@ -80,7 +80,7 @@ with st.sidebar:
     )
 
     st.divider()
-    st.caption("Set `ANTHROPIC_API_KEY` and `HF_TOKEN` in `.env`")
+    st.caption("Set `GROQ_API_KEY` and `HF_TOKEN` in `.env`")
 
 
 # ── Run evaluation ─────────────────────────────────────────────────────────────
@@ -90,7 +90,7 @@ if run_eval_btn and assistants_ready:
     with st.spinner("Running evaluation… this may take several minutes."):
         from evaluation import Evaluator, LLMJudge
 
-        judge = LLMJudge(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        judge = LLMJudge(api_key=os.getenv("GROQ_API_KEY"))
         evaluator = Evaluator(
             assistants={
                 "OSS (Qwen 2.5)": oss_assistant,
@@ -139,7 +139,7 @@ if st.session_state.eval_results:
     # Download evaluation report
     from evaluation import Evaluator, LLMJudge
 
-    judge = LLMJudge(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    judge = LLMJudge(api_key=os.getenv("GROQ_API_KEY"))
     evaluator = Evaluator(
         assistants={},
         judge=judge,
@@ -209,7 +209,7 @@ with col_oss:
 # ── Frontier column ────────────────────────────────────────────────────────────
 with col_frontier:
     st.subheader("Frontier Assistant")
-    st.caption("Model: `claude-sonnet-4-6` | Provider: Anthropic")
+    st.caption("Model: `llama-3.3-70b-versatile` | Provider: Groq")
 
     # Clear button
     if st.button("Clear conversation", key="clear_frontier"):

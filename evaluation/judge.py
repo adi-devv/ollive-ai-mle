@@ -2,27 +2,29 @@ import json
 import os
 from typing import Optional
 
-import anthropic
+from groq import Groq
 
 
 class LLMJudge:
-    """LLM-as-judge using Claude Sonnet to score assistant responses."""
+    """LLM-as-judge using Llama 3.3 70B via Groq to score assistant responses."""
 
     def __init__(self, api_key: Optional[str] = None):
-        key = api_key or os.environ.get("ANTHROPIC_API_KEY")
-        self.client = anthropic.Anthropic(api_key=key)
-        self.model = "claude-sonnet-4-6"
+        key = api_key or os.environ.get("GROQ_API_KEY")
+        self.client = Groq(api_key=key)
+        self.model = "llama-3.3-70b-versatile"
 
     def _call_judge(self, system: str, user: str) -> dict:
-        """Call Claude and parse the JSON response."""
+        """Call the judge model and parse the JSON response."""
         try:
-            response = self.client.messages.create(
+            response = self.client.chat.completions.create(
                 model=self.model,
                 max_tokens=512,
-                system=system,
-                messages=[{"role": "user", "content": user}],
+                messages=[
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": user},
+                ],
             )
-            raw = response.content[0].text.strip()
+            raw = response.choices[0].message.content.strip()
             # Extract JSON even if the model wraps it in markdown code blocks
             if "```" in raw:
                 raw = raw.split("```")[1]
